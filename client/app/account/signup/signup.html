@@ -1,0 +1,68 @@
+<!-- <div ng-include="'components/navbar/navbar.html'"></div> -->
+<article id="content">
+      <div class="uk-text-center">
+         <h1 class="how-it-work-titte font-light" translate="SINGUP_TITLE">SIGN UP</h1>
+      </div>
+      <div class="uk-container-center uk-width-medium-6-10 login-page">
+         <form name="form" ng-submit="register(form)" novalidate class="uk-form uk-form-horizontal">
+          <div class="table-login signup-page">
+              <div class="uk-form-row">
+               <label class="uk-form-label uk-text-right">ENGLISH NAME<em class="requice">*</em>&nbsp;: </label>
+               <div class="uk-form-controls">
+                  <input name="name" ng-model="user.name" maxlength="15" ng-maxlength="15" id="name" type="text" required>
+                  <p class="help-block" ng-show="form.name.$error.required && submitted">
+                     A name is required
+                  </p>
+                  <p class="help-block" ng-show="(errors.name && errors.name.length > 0)&& submitted">
+                     {{ errors.name }}
+                  </p>
+               </div>
+            </div>
+            <div class="uk-form-row">
+               <label class="uk-form-label uk-text-right"><span translate="EMAIL">EMAIL</span><em class="requice">*</em>&nbsp;: </label>
+               <div class="uk-form-controls">
+                  <input name="email" ng-model="user.email" id="email" type="email" required>
+                  <p class="help-block" ng-show="form.email.$error.email && submitted">
+                     Doesn't look like a valid email.
+                  </p>
+                  <p class="help-block" ng-show="form.email.$error.required && submitted">
+                     What's your email address?
+                  </p>
+                  <p class="help-block" ng-show="(errors.email && errors.email.length > 0)&& submitted">
+                     {{ errors.email }}
+                  </p>
+               </div>
+            </div>
+            <div class="uk-form-row">
+               <label class="uk-form-label uk-text-right"><span translate="PASSWORD">PASSWORD</span><em class="requice">*</em>&nbsp;: </label>
+               <div class="uk-form-controls">
+                  <input name="password" ng-model="user.password" ng-minlength="3" type="password" required>
+                  <p class="help-block"
+                     ng-show="(form.password.$error.minlength || form.password.$error.required) && submitted">
+                     Password must be at least 3 characters.
+                  </p>
+                  <p class="help-block" ng-show="(errors.password && errors.password.length > 0)&& submitted">
+                     {{ errors.password }}
+                  </p>
+               </div>
+            </div>
+            <div class="uk-form-row">
+               <label class="uk-form-label uk-text-right"><span translate="RE_PASSWORD"></span><em class="requice">*</em>&nbsp;: </label>
+               <div class="uk-form-controls">
+                  <input type="password" name="confirm" ng-model="user.confirm" ng-minlength="3" required>
+                  <p class="help-block" ng-show="(form.confirm.$error.minlength || form.confirm.$error.required) && submitted">
+                     <!--ng-show="form.error.newConfirm"-->
+                     The password and confirmation password do not match.
+                  </p>
+               </div>
+            </div>
+            <div class="uk-form-row">
+              <label class="uk-form-label">&nbsp;</label>
+              <div class="uk-form-controls">
+                  <input type="submit" class="uk-button btn-update" value="{{'SUBMIT_SIGNUP' | translate}}">
+              </div>
+            </div>
+          </div>
+         </form>
+      </div>
+</article>

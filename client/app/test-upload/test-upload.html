@@ -1,0 +1,10 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div class="container">
+    <div class="col-md-12" data-ng-controller="TestUploadCtrl">
+        <form name="form">
+            <div data-ng-class="messageClass" data-ng-show="isDisplayMessage" data-ng-bind="messageText"></div>
+            <p> Single Image with validations</p>
+            <div class="btn btn-primary" ngf-select data-ng-model="file" name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" ngf-min-height="100" ngf-resize="{width: 800, height: 800}">Select</div>
+        </form>
+    </div>
+</div>

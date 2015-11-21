@@ -1,0 +1,79 @@
+<!-- BEGIN LOGO -->
+<div class="logo">
+  <a>
+  vadsence ADMIN
+  </a>
+  <!-- <a href="index.html"> -->
+  <!-- <img src="../../assets/admin/layout4/img/logo-big.png" alt=""/> -->
+  <!-- </a> -->
+</div>
+<!-- END LOGO -->
+<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+<div class="menu-toggler sidebar-toggler">
+</div>
+<!-- END SIDEBAR TOGGLER BUTTON -->
+<!-- BEGIN LOGIN -->
+<div class="content">
+  <!-- BEGIN LOGIN FORM -->
+  <form class="login-form" name="form" data-ng-submit="login(form)">
+    <h3 class="form-title">Login to your account</h3>
+    <div class="alert alert-danger display-hide">
+      <button class="close" data-close="alert"></button>
+      <span>
+      Enter any username and password. </span>
+    </div>
+    <div class="form-group">
+      <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+      <label class="control-label visible-ie8 visible-ie9">Email</label>
+      <div class="input-icon">
+        <i class="fa fa-user"></i>
+        <!-- <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" name="username"/> -->
+        <input ng-model="user.email" class="form-control placeholder-no-fix" required autocomplete="off" type="email">
+      </div>
+
+    </div>
+    <p class="help-block" ng-show="form.email.$error.email && submitted">
+                  Please enter a valid email.
+              </p>
+    <div class="form-group">
+      <label class="control-label visible-ie8 visible-ie9">Password</label>
+      <div class="input-icon">
+        <i class="fa fa-lock"></i>
+        <!-- <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="password"/> -->
+        <input type="password" class="form-control placeholder-no-fix" type="password"  ng-model="user.password" required autocomplete="off">
+      </div>
+    </div>
+    <p class="help-block" ng-show="form.email.$error.required && form.password.$error.required && submitted" translate>
+                    Please enter your email and password.
+                </p>
+    <div class="form-actions">
+      <!-- <label class="checkbox"> -->
+      <!-- <input type="checkbox" name="remember" value="1"/> Remember me </label> -->
+      <p class="text-center"><button type="submit" class="btn green-haze">
+      Login <i class="m-icon-swapright m-icon-white"></i>
+      </button></p>
+    </div>
+
+    <div class="forget-password">
+      <h4>Forgot your password ?</h4>
+      <p>
+         no worries, click <a href="/forgetpassword/" id="forget-password">
+        here </a>
+        to reset your password.
+      </p>
+    </div>
+    <!-- <div class="create-account">
+      <p>
+         Don't have an account yet ?&nbsp; <a href="javascript:;" id="register-btn">
+        Create an account </a>
+      </p>
+    </div> -->
+  </form>
+  <!-- END LOGIN FORM -->
+</div>
+<!-- END LOGIN -->
+<!-- BEGIN COPYRIGHT -->
+<div class="copyright">
+   2014 &copy; Metronic. Admin Dashboard Template.
+</div>
+<!-- END COPYRIGHT 

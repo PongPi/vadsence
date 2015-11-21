@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" ng-app="vadsenceNodeApp">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <base href="/">
+    <title ng-bind="title">vadsence</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="shortcut icon" href="favicon.ico"  />
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(client) app/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css" />
+    <link rel="stylesheet" href="bower_components/select2/select2.css" />
+    <link rel="stylesheet" href="bower_components/selectize/dist/css/selectize.css" />
+    <link rel="stylesheet" href="bower_components/sweetalert/dist/sweetalert.css" />
+    <link rel="stylesheet" href="bower_components/ui-select/dist/select.css" />
+    <link rel="stylesheet" href="bower_components/textAngular/dist/textAngular.css" />
+    <link rel="stylesheet" href="bower_components/ngImgCrop/compile/minified/ng-img-crop.css" />
+    <link rel="stylesheet" href="bower_components/simple-line-icons/css/simple-line-icons.css" />
+    <link rel="stylesheet" href="bower_components/datatables/media/css/jquery.dataTables.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css({.tmp,client}) app/app.css -->
+    <!--link rel="stylesheet" href="bower_components/uikit/css/uikit.gradient.min.css" media="screen" /-->
+    <link rel="stylesheet" href="app/app.css" media="screen">
+    <!-- injector:css -->
+    <link rel="stylesheet" href="components/template/global/css/components-rounded.css">
+    <link rel="stylesheet" href="components/template/global/css/datatable.css">
+    <link rel="stylesheet" href="components/template/global/css/plugins.css">
+    <link rel="stylesheet" href="components/template/layout4/css/custom.css">
+    <link rel="stylesheet" href="components/template/layout4/css/layout.css">
+    <link rel="stylesheet" href="components/template/layout4/css/login3.css">
+    <link rel="stylesheet" href="components/template/layout4/css/themes/light.css">
+    <!-- endinjector -->
+    <!-- endbuild -->
+</head>
+
+<body ng-class="{'login' : !isLoggedIn(), 'page-header-fixed page-sidebar-closed-hide-logo page-sidebar-closed-hide-logo' : isLoggedIn()}" >
+    <!--[if lt IE 7]>
+          <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+<!-- <div ng-show="isLoggedIn()" > -->
+    <div id="header-page" ng-controller="NavbarCtrl">
+        <div ng-include="'components/navbar/navbar.html'"></div>
+    </div>
+    <!-- BEGIN CONTAINER -->
+    <div class="page-container">
+        <div id="menuleft-page" ng-include="'components/navbar/menuleft.html'"></div>
+        <!-- BEGIN CONTENT -->
+        <div class="page-content-wrapper">
+            <div class="page-content">
+                <!-- BEGIN PAGE HEAD -->
+                <!-- <div class="page-head"> -->
+                    <!-- BEGIN PAGE TITLE -->
+                    <!-- <div class="page-title">
+                        <h1>Dashboard <small>statistics & reports</small></h1>
+                    </div> -->
+                    <!-- END PAGE TITLE -->
+                <!-- </div> -->
+                <!-- END PAGE HEAD -->
+                <!-- BEGIN PAGE CONTENT INNER -->
+                
+                <div ng-view=""></div>
+                <!-- END PAGE CONTENT INNER -->
+            </div>
+        </div>
+        <!-- END CONTENT -->
+    </div>
+    <!-- END CONTAINER -->
+    <footer id="footer-page" ng-include="'components/navbar/footer.html'"></footer>
+<!-- </div> -->
+<!-- <div ng-show="!isLoggedIn()" >
+<div ng-view=""></div>
+</div> -->
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+    <!--    <script>
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function() {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+            ga('create', 'UA-XXXXX-X');
+            ga('send', 'pageview');
+            </script>-->
+    <!--[if lt IE 9]>
+        <script src="bower_components/es5-shim/es5-shim.js"></script>
+        <script src="bower_components/json3/lib/json3.min.js"></script>
+        <![endif]-->
+    <!-- build:js({client,node_modules}) app/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-scroll/angular-scroll.js"></script>
+    <script src="bower_components/angular-translate/angular-translate.js"></script>
+    <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+    <script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+    <script src="bower_components/angular-translate-storage-local/angular-translate-storage-local.js"></script>
+    <script src="bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="bower_components/bootstrap-hover-dropdown/bootstrap-hover-dropdown.js"></script>
+    <script src="bower_components/lodash/lodash.js"></script>
+    <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+    <script src="bower_components/select2/select2.js"></script>
+    <script src="bower_components/sifter/sifter.js"></script>
+    <script src="bower_components/microplugin/src/microplugin.js"></script>
+    <script src="bower_components/selectize/dist/js/selectize.js"></script>
+    <script src="bower_components/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="bower_components/ui-select/dist/select.js"></script>
+    <script src="bower_components/rangy/rangy-core.js"></script>
+    <script src="bower_components/rangy/rangy-classapplier.js"></script>
+    <script src="bower_components/rangy/rangy-highlighter.js"></script>
+    <script src="bower_components/rangy/rangy-selectionsaverestore.js"></script>
+    <script src="bower_components/rangy/rangy-serializer.js"></script>
+    <script src="bower_components/rangy/rangy-textrange.js"></script>
+    <script src="bower_components/textAngular/dist/textAngular.js"></script>
+    <script src="bower_components/textAngular/dist/textAngular-sanitize.js"></script>
+    <script src="bower_components/textAngular/dist/textAngularSetup.js"></script>
+    <script src="bower_components/ngImgCrop/compile/minified/ng-img-crop.js"></script>
+    <script src="bower_components/angular-easypiechart/dist/angular.easypiechart.js"></script>
+    <script src="bower_components/datatables/media/js/jquery.dataTables.js"></script>
+    <script src="bower_components/blockUI/jquery.blockUI.js"></script>
+    <script src="bower_components/jquery.uniform/jquery.uniform.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:js(.tmp) app/app.js -->
+    <script src="app/app.js"></script>
+    <!-- injector:js -->
+    <script src="app/account/account.js"></script>
+    <script src="app/account/login/login.controller.js"></script>
+    <script src="app/account/login/mentor_login.controller.js"></script>
+    <script src="app/account/login/student_login.controller.js"></script>
+    <script src="app/account/settings/settings.controller.js"></script>
+    <script src="app/account/signup/mentor_signup.controller.js"></script>
+    <script src="app/account/signup/signup.controller.js"></script>
+    <script src="app/account/signup/student_signup.controller.js"></script>
+    <script src="app/dashboard/dashboard.controller.js"></script>
+    <script src="app/dashboard/dashboard.js"></script>
+    <script src="app/pricing/pricing.controller.js"></script>
+    <script src="app/pricing/pricing.js"></script>
+    <script src="app/test-upload/test-upload.controller.js"></script>
+    <script src="app/test-upload/test-upload.js"></script>
+    <script src="components/auth/auth.service.js"></script>
+    <script src="components/auth/user.service.js"></script>
+    <script src="components/dashboard-student-nav/dashboard-student-nav.controller.js"></script>
+    <script src="components/filter/datetimezoneview.js"></script>
+    <script src="components/filter/joinclassroom.js"></script>
+    <script src="components/filter/message.js"></script>
+    <script src="components/filter/name.js"></script>
+    <script src="components/filter/property.js"></script>
+    <script src="components/filter/status.js"></script>
+    <script src="components/filter/timezone.js"></script>
+    <script src="components/helper/helper.service.js"></script>
+    <script src="components/helper/range.filter.js"></script>
+    <script src="components/libs/angular-vertilize.min.js"></script>
+    <script src="components/modal/modal.service.js"></script>
+    <script src="components/models/BookedSession.js"></script>
+    <script src="components/models/BookedSessionProperty.js"></script>
+    <script src="components/models/bookedProgram.js"></script>
+    <script src="components/models/bookingHour.js"></script>
+    <script src="components/models/country.js"></script>
+    <script src="components/models/mentor.js"></script>
+    <script src="components/models/program.js"></script>
+    <script src="components/models/programCategory.js"></script>
+    <script src="components/models/property.js"></script>
+    <script src="components/models/timezone.js"></script>
+    <script src="components/mongoose-error/mongoose-error.directive.js"></script>
+    <script src="components/navbar/menuleft.controller.js"></script>
+    <script src="components/navbar/navbar.controller.js"></script>
+    <script src="components/template/global/scripts/Demo.js"></script>
+    <script src="components/template/global/scripts/datatable.js"></script>
+    <script src="components/template/global/scripts/metronic.js"></script>
+    <script src="components/template/layout4/scripts/layout.js"></script>
+    <!-- endinjector -->
+    <!-- endbuild -->
+    <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script-->
+</body>
+</html>
