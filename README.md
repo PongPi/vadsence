@@ -1,15 +1,15 @@
-# vadsence
+# go1636
 
 Using Nodejs, Yeoman, Angular-Fullstack.
 
 ### Note from duyetdev
 
-<!-- * Seed data config: `/server/config/seed.js`
+* Seed data config: `/server/config/seed.js`
 * New feature -> jump to new branch, finish -> merge to `master` branch
 * Auto deploy for review in `test-branch` branch
-* Wiki: [Using Helper.displayMessage](https://github.com/PongPi/vadsence/wiki/Using-Helper.displayMessage)
-* Wiki: [Map Array of key value pairs to an Object](https://github.com/PongPi/vadsence/wiki/Lodash-Map-Array-of-key-value-pairs-to-an-Object---One-liner)
-* Wiki: [Go Sendmail component](https://github.com/PongPi/vadsence/wiki/vadsence-Sendmail) -->
+* Wiki: [Using Helper.displayMessage](https://github.com/PongPi/go1636/wiki/Using-Helper.displayMessage)
+* Wiki: [Map Array of key value pairs to an Object](https://github.com/PongPi/go1636/wiki/Lodash-Map-Array-of-key-value-pairs-to-an-Object---One-liner)
+* Wiki: [Go Sendmail component](https://github.com/PongPi/go1636/wiki/Go1636-Sendmail)
 
 
 # Usage 
