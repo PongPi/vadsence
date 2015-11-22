@@ -10,7 +10,6 @@ var randomstring = require("randomstring");
 var User = require('./user.model');
 var config = require('../../config/environment');
 var mail = require('../../components/mail');
-var ToDoList = require('../to_do_list/to_do_list.model');
 var config = require('../../config/environment');
 var validationError = function(res, err) {
 	return res.status(422).json(err);
@@ -92,48 +91,8 @@ exports.show = function(req, res, next) {
 	});
 };
 
-/**
- * Get a Check To Do List
- */
-exports.checkToDoList = function(req, res, next) {
 
-	User.checkToDoList(req, function (err, data) {
-		if (err) {
-			return handleError(res, err);
-		}
-		return res.status(200).json(data);
-	});
-};
 
-/**
- * Get a Check To Do List
- */
-exports.studentTrigger = function(req, res, next) {
-	var userId = req.user._id;
-	if(_.has(req.params,'id') && req.params.id != "me"){
-		userId = req.params.id;
-	}
-	//console.log('checkToDoList exports', userId);
-	var user_type = "student";
-	if (config.userRoles.indexOf(req.user.role) >= config.userRoles.indexOf('mentor')) {
-		user_type = "mentor";
-	}
-
-	if(user_type === 'student'){
-		User.findById(userId, function(err, user) {
-			if (err) return next(err);
-			if (!user) return res.status(401).send('Unauthorized');
-			user.checkStudentTriggerToDoList(function (err_check, to_do_list) {//userId,user.time_zone, )
-				if(err_check) { return handleError(res, err_check); }
-				if(!to_do_list) { return res.status(404).send('Not Found'); }
-				return res.json({list: to_do_list});
-			});
-		});
-	}else{
-		return res.status(404).send('Not Found');
-	}
-
-};
 
 
 
@@ -269,22 +228,8 @@ exports.me = function(req, res, next) {
 					properties: properties,
 					//activation: true,
 				});
-
-		ToDoList.count({ type: user_type }, function (err, count) {
-			var _user = {};
-			if(user.to_do_list_ids.length === count){
-				_user = _.merge(user, {
-					//properties: properties,
-					activation: true,
-				});
-			}else{
-				_user = _.merge(user, {
-					//properties: properties,
-					activation: false
-				});
-			}
-			res.json(_user);
-		});
+		res.json(user);
+	
 
 
 	});
@@ -306,24 +251,7 @@ exports.view = function(req, res, next) {
 		if (config.userRoles.indexOf(user.role) >= config.userRoles.indexOf('mentor')) {
 			user_type = "mentor";
 		}
-		ToDoList.count({ type: user_type }, function (err, count) {
-			//console.log('checkToDoList me', count, user.to_do_list_ids.length)
-			var _user = {};
-			if(user.to_do_list_ids.length === count){
-				_user = _.merge(user, {
-					properties: properties,
-					activation: true
-				});
-			}else{
-				_user = _.merge(user, {
-					properties: properties,
-					activation: false
-				});
-			}
-			res.json(_user);
-		});
-
-
+		res.json(user);
 	});
 
 };

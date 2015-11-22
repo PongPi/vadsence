@@ -16,10 +16,10 @@ router.get('/generate_pass', controller.generate_pass);
 router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
 router.get('/:id', auth.isAuthenticated(), controller.show);
 router.get('/:id/view', controller.view);
-router.get('/:id/checkToDoList', auth.isAuthenticated(), controller.checkToDoList);
-router.get('/me/checkToDoList', auth.isAuthenticated(), controller.checkToDoList);
-router.get('/:id/studenttrigger', auth.isAuthenticated(), controller.studentTrigger);
-router.get('/me/studenttrigger', auth.isAuthenticated(), controller.studentTrigger);
+// router.get('/:id/checkToDoList', auth.isAuthenticated(), controller.checkToDoList);
+// router.get('/me/checkToDoList', auth.isAuthenticated(), controller.checkToDoList);
+// router.get('/:id/studenttrigger', auth.isAuthenticated(), controller.studentTrigger);
+// router.get('/me/studenttrigger', auth.isAuthenticated(), controller.studentTrigger);
 router.post('/:id', auth.isAuthenticated(), controller.update);
 router.post('/', controller.create);
 
