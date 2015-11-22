@@ -1,5 +1,5 @@
 {
-  "name": "vadsence-node",
+  "name": "go1636-node",
   "version": "0.0.0",
   "main": "server/app.js",
   "dependencies": {
