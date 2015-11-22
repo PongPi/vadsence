@@ -6,7 +6,7 @@ var vadsenceapp = angular.module('vadsenceNodeApp', [
         'ngSanitize',
         'ngRoute',
         'ngAnimate',
-        'ui.bootstrap',
+//        'ui.bootstrap',
         'angular-loading-bar',
         'ui.select',
         'ngFileUpload',
@@ -16,12 +16,12 @@ var vadsenceapp = angular.module('vadsenceNodeApp', [
         'ngImgCrop'
     ])
     .config(function($routeProvider, $locationProvider, $httpProvider,$translateProvider) {
-        $translateProvider.useStaticFilesLoader({
-            prefix: 'assets/languages/locale-',
-            suffix: '.json'
-        });
-        $translateProvider.useLocalStorage();
-        $translateProvider.preferredLanguage('cn');
+        // $translateProvider.useStaticFilesLoader({
+        //     prefix: 'assets/languages/locale-',
+        //     suffix: '.json'
+        // });
+        // $translateProvider.useLocalStorage();
+        // $translateProvider.preferredLanguage('cn');
         $routeProvider
             .otherwise({
                 redirectTo: '/'
@@ -44,7 +44,7 @@ var vadsenceapp = angular.module('vadsenceNodeApp', [
                 responseError: function (response) {
                     if (response.status == 401) {
                         if($rootScope.isHome !== true){
-                            $location.path('/login');
+                            //$location.path('/login');
                             // remove any stale tokens
                             $cookieStore.remove('token');
                         }
@@ -109,7 +109,7 @@ var vadsenceapp = angular.module('vadsenceNodeApp', [
                 //   });
                 // }, 0);
                 $rootScope.isLoggedIn = Auth.isLoggedIn;
-                console.log('rootScope',  Auth.isLoggedIn())
+                // console.log('rootScope',  Auth.isLoggedIn())
                 if (Auth.isLoggedIn()) {
                     // Auth.getUser(function(error, currentUser){
                     //     if(error){
@@ -133,12 +133,12 @@ var vadsenceapp = angular.module('vadsenceNodeApp', [
                 Auth.isLoggedInAsync(function (loggedIn) {
                     if (next.authenticate && !loggedIn) {
                         event.preventDefault();
-                        $location.path('/login');
+                        //$location.path('/login');
                     } else {
                         if ($cookieStore.get('token')) {
                             if ($location.path().indexOf('/login') !== -1) {
                                 event.preventDefault();
-                                $location.path('/student-profile/personal');
+                                //$location.path('/student-profile/personal');
                             }
                         }
                     }
@@ -206,11 +206,14 @@ function activeMenu($rootScope, $location) {
     // }
 
 }
-// $( "body" ).delegate( "ul.select2-choices", "click", function() {
-//   $(this).find("input").focus();
-// });
-jQuery(document).ready(function() {    
-   // Metronic.init(); // init layout 
-   Layout.init(); // init layout 
-   // Demo.init(); // init layout 
+
+
+jQuery(document).ready(function() {
+    Layout.init();    
+    Layout.initOWL();
+    Layout.initTwitter();
+    Layout.initImageZoom();
+    Layout.initTouchspin();
+    Layout.initUniform();
+    // Layout.initSliderRange();
 });
