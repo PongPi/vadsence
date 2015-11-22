@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('vadsenceNodeApp')
-	.factory('Auth', function Auth($location, $rootScope, $http, User, Property, $cookieStore, $q) {
+	.factory('Auth', function Auth($location, $rootScope, $http, User, $cookieStore, $q) {
 		var currentUser = {};
 		currentUser = User.get();
 
@@ -185,19 +185,19 @@ angular.module('vadsenceNodeApp')
 			},
 			getUser: function(callback){
 				User.get(function(currentUser){
-                    $cookieStore.put('isActivation', currentUser.activation);
+                 //    $cookieStore.put('isActivation', currentUser.activation);
 
-	                var now = moment();
-	                if (currentUser.day_of_birth !== undefined || currentUser.day_of_birth !== 'Invalid date') {
-	                    currentUser.day_of_birth = moment(currentUser.day_of_birth).format('MM/DD/YYYY');
-	                } else {
-	                    currentUser.day_of_birth = now.format('MM/DD/YYYY');
-	                }
+	                // var now = moment();
+	                // if (currentUser.day_of_birth !== undefined || currentUser.day_of_birth !== 'Invalid date') {
+	                //     currentUser.day_of_birth = moment(currentUser.day_of_birth).format('MM/DD/YYYY');
+	                // } else {
+	                //     currentUser.day_of_birth = now.format('MM/DD/YYYY');
+	                // }
 	                if (callback && typeof(callback) === "function") {
 						callback(false,currentUser);
 					}
 	            }, function(error){
-	            	console.log('getUser', error)
+	            	// console.log('getUser', error)
 	            	if(_.has(error,'status') && parseInt(error.status) == 401){
 	            		return callback(false,{});
 	            	}
@@ -206,38 +206,38 @@ angular.module('vadsenceNodeApp')
 					}
 	            });
 			},
-     	checkToDoList: function () {
+     // 	checkToDoList: function () {
 
-	        if($cookieStore.get('isStudent') && $cookieStore.get('token')){
-	        	User.checkToDoList(function (data) {
-	        		console.log('checkToDoList', data)	;
-	        		if(parseInt(data.status) < 4){
-	        			$cookieStore.put('isActivation', false);
-	        		}else{
-	        			$cookieStore.put('isActivation', true);
-	        		}
-		      	}, function (err) {
-		      		$cookieStore.put('isActivation', false);
+	    //     if($cookieStore.get('isStudent') && $cookieStore.get('token')){
+	    //     	User.checkToDoList(function (data) {
+	    //     		console.log('checkToDoList', data)	;
+	    //     		if(parseInt(data.status) < 4){
+	    //     			$cookieStore.put('isActivation', false);
+	    //     		}else{
+	    //     			$cookieStore.put('isActivation', true);
+	    //     		}
+		   //    	}, function (err) {
+		   //    		$cookieStore.put('isActivation', false);
 
-		      	});
-	        }
-    	},
-     	studentTrigger: function (callback) {
+		   //    	});
+	    //     }
+    	// },
+     // 	studentTrigger: function (callback) {
 
-	        if($cookieStore.get('isStudent') && $cookieStore.get('token')){
-	        	User.studentTrigger(function (data) {
-	        		if (callback && typeof(callback) === "function") {
-						callback(false,data);
-					}
+	    //     if($cookieStore.get('isStudent') && $cookieStore.get('token')){
+	    //     	User.studentTrigger(function (data) {
+	    //     		if (callback && typeof(callback) === "function") {
+					// 	callback(false,data);
+					// }
 
-	        		//$cookieStore.put('isActivation', true);
-		      	}, function (err) {
-		      		if (callback && typeof(callback) === "function") {
-						callback(err,false);
-					}
+	    //     		//$cookieStore.put('isActivation', true);
+		   //    	}, function (err) {
+		   //    		if (callback && typeof(callback) === "function") {
+					// 	callback(err,false);
+					// }
 
-		      	});
-	        }
-    	}
+		   //    	});
+	    //     }
+    	// }
 	};
 });

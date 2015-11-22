@@ -1,0 +1,63 @@
+<div class="panel panel-default widget-layout">
+  <div class="panel-body">
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a data-target="#timeline-picture" aria-controls="timeline-picture" role="tab" data-toggle="tab">ẢNH</a></li>
+    <li role="presentation"><a data-target="#timeline-video" aria-controls="timeline-video" role="tab" data-toggle="tab">VIDEO</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="timeline-picture">
+        <form  class="default-form" role="form" name="timeline_picture" >
+            
+            <div class="form-group">
+                <label for="picture-content">Nội dung <span class="require">*</span></label>
+              <textarea class="form-control" rows="3" id="picture-content" placeholder="Nội dung" ng-model="picture.content" required></textarea>
+            </div>
+            <!-- </form> -->
+            <div class="form-group row">
+              <!-- <label for="picture-url">Ảnh <span class="require">*</span></label> -->
+              <!-- <input type="file" ng-model="picture.url" class="form-control" id="picture-url" placeholder="File" required> -->
+              <!-- <form name="form"> -->
+                  <!-- <div data-ng-class="messageClass" data-ng-show="isDisplayMessage" data-ng-bind="messageText"></div> -->
+                  <!-- <p> Single Image with validations</p> -->
+                  <div class="col-xs-6 col-md-3" ng-if="picture.url">
+                    <a href="{{picture.url}}" class="thumbnail">
+                      <img src="{{picture.url}}" alt="{{picture.url}}" height="64px" style="height:64px">
+                    </a>
+                  </div>
+                  <div class="col-xs-6 col-md-3">
+                  <!-- <div ng-if="picture.url"><img src="{{picture.url}}" ></div> -->
+                  <div id="timeline-picture-upload" class="btn btn-info" ngf-select data-ng-model="file.picture" name="file.picture" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" ngf-min-height="100" ngf-resize="{width: 800, height: 800}"><i>Chọn ảnh</i></div>
+              </div>
+
+            </div>
+            <div class="padding-top-20">   
+                <p class="text-right">               
+              <button type="submit" class="btn btn-primary" ng-click="picture_save(timeline_picture)">Đăng</button>
+              </p>
+            </div>
+          </form>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="timeline-video">
+        <form  class="default-form" role="form" name="timeline_video" ng-submit="video_save(timeline_video)">
+            
+            <div class="form-group">
+                <label for="content">Nội dung <span class="require">*</span></label>
+              <textarea class="form-control" rows="3" id="content" placeholder="Nội dung" ng-model="video.content" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="url">Link <span class="require">*</span></label>
+              <input type="text" ng-model="video.url" class="form-control" id="url" placeholder="Link" required>
+            </div>
+            <div class="padding-top-20">   
+                <p class="text-right">               
+              <button type="submit" class="btn btn-primary">Đăng</button>
+              </p>
+            </div>
+          </form>
+    </div>
+  </div>
+  </div>
+</div>
