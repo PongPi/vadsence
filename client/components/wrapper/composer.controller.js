@@ -16,7 +16,13 @@ angular.module('vadsenceNodeApp')
     });
     $scope.picture_save = function (form) {
         console.log('ComposerCtrl',form);
-        if (form.$valid) {
+        if(_.size($scope.user) === 0){
+            swal("Lỗi!", "Bạn vui lòng đăng nhập trước khi đăng bài!", "error");
+            return;
+        }
+        if (form.$valid && 
+                (_.has($scope.picture,'url') && $scope.picture.url.length > 0)
+            ) {
             Article.save({
               content: $scope.picture.content,
               url: $scope.picture.url,
@@ -24,23 +30,22 @@ angular.module('vadsenceNodeApp')
               category: 'picture'
             },
                 function(data) {
-                    // $cookieStore.put('token', data.token);
-                    // $cookieStore.put('isMentor', data.type == 'mentor');
-                    // $cookieStore.put('isStudent', data.type == 'student');
-                    // $cookieStore.put('isActivation', data.activation);
-                    // currentUser = User.get();
-                    // return cb(user);
+
                     console.log('ComposerCtrl',data);
                 },
                 function(err) {
-                    console.log('ComposerCtrl',err);
-                    // this.logout();
-                    // return cb(err);
+                    swal("Lỗi!", "Something went wrong. Please try again.", "error");
                 });
+        }else{
+            swal("Lỗi!", "Bạn vui lòng nhập đầy đủ dữ liệu trước khi đăng bài!", "error");
         }
     }    
     $scope.video_save = function (form) {
-        console.log('ComposerCtrl',form);
+        console.log('ComposerCtrl $scope.user',_.size($scope.user),_.size($scope.video));
+        if(_.size($scope.user) === 0){
+            swal("Lỗi!", "Bạn vui lòng đăng nhập trước khi đăng bài!", "error");
+            return;
+        }
         if (form.$valid) {
             Article.save({
               content: $scope.video.content,
@@ -49,25 +54,15 @@ angular.module('vadsenceNodeApp')
               category: 'video'
             },
                 function(data) {
-                    // $cookieStore.put('token', data.token);
-                    // $cookieStore.put('isMentor', data.type == 'mentor');
-                    // $cookieStore.put('isStudent', data.type == 'student');
-                    // $cookieStore.put('isActivation', data.activation);
-                    // currentUser = User.get();
-                    // return cb(user);
                     console.log('ComposerCtrl',data);
                 },
                 function(err) {
-                    console.log('ComposerCtrl',err);
-                    // this.logout();
-                    // return cb(err);
+                    swal("Lỗi!", "Something went wrong. Please try again.", "error");
                 });
+        }else{
+            swal("Lỗi!", "Bạn vui lòng nhập đầy đủ dữ liệu trước khi đăng bài!", "error");
         }
     }
-    // upload later on form submit or something similar
-    // $scope.submit = function() {
-    //     $scope.upload($scope.file);
-    // };
     $scope.file = {};
     $scope.$watch('file.picture', function(old, new_file) {
         console.log('ComposerCtrl file', $scope.file)
@@ -90,10 +85,14 @@ angular.module('vadsenceNodeApp')
             $scope.picture.url = data.file_path;
             swal("Document uploaded", "", "success");
         }).error(function(data, status, headers, config) {
+            if(_.has(data,'message') && data.message == "Unauthorized"){
+                swal("Lỗi!", "Bạn vui lòng đăng nhập trước khi đăng bài!", "error");
+            }else{
+                swal("Lỗi!", "Something went wrong. Please try again.", "error");
+            }
+            //console.log('ComposerCtrl upload error', data)
             $('#timeline-picture-upload i').replaceWith('<i >Chọn ảnh</i>');
             $('#timeline-picture-upload').prop('disabled', false);
-            // Helper.displayMessage('danger', 'Something went wrong');
-            swal("Error!", "Something went wrong. Please try again.", "error");
         });
 
         
